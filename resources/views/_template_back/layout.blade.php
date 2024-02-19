@@ -29,6 +29,15 @@
 		<!--- Animations css --->
 		<link href="{{ asset('assets') }}/css/animate.css" rel="stylesheet">
 
+		<!--- JQuery min js --->
+		<script src="{{ asset('') }}plugin/jquery-3.6.0.js"></script>
+		<script src="{{ asset('') }}back/plugins/jquery/jquery.min.js"></script>
+		<!-- DataTables  -->
+		<script type="text/javascript" src="{{ asset('') }}plugin/datatables/pdf.js"></script>
+		<script type="text/javascript" src="{{ asset('') }}plugin/datatables/font.js"></script>
+		<script type="text/javascript" src="{{ asset('') }}plugin/datatables/datatables.js"></script>
+		<script type="text/javascript" src="{{ asset('') }}plugin/datatables/js/dataTables.checkboxes.min.js"></script>
+
 	</head>
 
 	<body class="main-body app sidebar-mini ltr">
@@ -222,65 +231,79 @@
 		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
 		<!--- JQuery min js --->
-		<script src="../assets/plugins/jquery/jquery.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/jquery/jquery.min.js"></script>
 
 		<!--- Datepicker js --->
-		<script src="../assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+		<script src="{{ asset('') }}assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
 
 		<!--- Bootstrap Bundle js --->
-		<script src="../assets/plugins/bootstrap/popper.min.js"></script>
-		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/bootstrap/popper.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 		<!--- Ionicons js --->
-		<script src="../assets/plugins/ionicons/ionicons.js"></script>
+		<script src="{{ asset('') }}assets/plugins/ionicons/ionicons.js"></script>
 
 		<!--- Chart bundle min js --->
-		<script src="../assets/plugins/chart.js/Chart.bundle.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/chart.js/Chart.bundle.min.js"></script>
 
 		<!--- JQuery sparkline js --->
-		<script src="../assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
 
 		<!--- Internal Sampledata js --->
-		<script src="../assets/js/chart.flot.sampledata.js"></script>
+		<script src="{{ asset('') }}assets/js/chart.flot.sampledata.js"></script>
 
 		<!--- Eva-icons js --->
-		<script src="../assets/js/eva-icons.min.js"></script>
+		<script src="{{ asset('') }}assets/js/eva-icons.min.js"></script>
 
 		<!--- Moment js --->
-		<script src="../assets/plugins/moment/moment.js"></script>
+		<script src="{{ asset('') }}assets/plugins/moment/moment.js"></script>
 
 		<!--- Perfect-scrollbar js --->
-		<script src="../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="../assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+		<script src="{{ asset('') }}assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/perfect-scrollbar/p-scroll.js"></script>
 
 		<!--- Sidebar js --->
-		<script src="../assets/plugins/side-menu/sidemenu.js"></script>
+		<script src="{{ asset('') }}assets/plugins/side-menu/sidemenu.js"></script>
 
 		<!--- sticky js --->
-		<script src="../assets/js/sticky.js"></script>
+		<script src="{{ asset('') }}assets/js/sticky.js"></script>
 
 		<!-- right-sidebar js -->
-		<script src="../assets/plugins/sidebar/sidebar.js"></script>
-		<script src="../assets/plugins/sidebar/sidebar-custom.js"></script>
+		<script src="{{ asset('') }}assets/plugins/sidebar/sidebar.js"></script>
+		<script src="{{ asset('') }}assets/plugins/sidebar/sidebar-custom.js"></script>
 
 		<!-- Morris js -->
-		<script src="../assets/plugins/raphael/raphael.min.js"></script>
-		<script src="../assets/plugins/morris.js/morris.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/raphael/raphael.min.js"></script>
+		<script src="{{ asset('') }}assets/plugins/morris.js/morris.min.js"></script>
 
 		<!--- Scripts js --->
-		<script src="../assets/js/script.js"></script>
+		<script src="{{ asset('') }}assets/js/script.js"></script>
 
 		<!--- Index js --->
-		<script src="../assets/js/index.js"></script>
+		<script src="{{ asset('') }}assets/js/index.js"></script>
 
 		<!--themecolor js-->
-		<script src="../assets/js/themecolor.js"></script>
+		<script src="{{ asset('') }}assets/js/themecolor.js"></script>
 
 		<!--swither-styles js-->
-		<script src="../assets/js/swither-styles.js"></script>
+		<script src="{{ asset('') }}assets/js/swither-styles.js"></script>
 
 		<!--- Custom js --->
-		<script src="../assets/js/custom.js"></script>
+		<script src="{{ asset('') }}assets/js/custom.js"></script>
 
+		  <!-- DATA TABLE JS-->
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/jszip.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/buttons.html5.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/buttons.print.min.qjs"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/dataTables.responsive.min.js"></script>
+		  <script src="{{ asset('') }}assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
+		  <script src="{{ asset('') }}assets/js/table-data.js"></script>
 	</body>
 </html>
