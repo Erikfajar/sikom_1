@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Buku;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\DataBukuExportView;
+use App\Imports\ImportDataBukuClass;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BukuController extends Controller
@@ -19,7 +21,7 @@ class BukuController extends Controller
     public function index()
     {
         $buku = Buku::all();
-        return view('data_buku.index',compact('buku'));
+        return view('data_buku.index', compact('buku'));
     }
 
     /**
@@ -64,7 +66,7 @@ class BukuController extends Controller
         ];
 
         Buku::create($data);
-        return redirect()->route('buku.index')->with('success','Data Berhasil di Simpan');
+        return redirect()->route('buku.index')->with('success', 'Data Berhasil di Simpan');
     }
 
     /**
@@ -87,7 +89,7 @@ class BukuController extends Controller
     public function edit($id)
     {
         $dt = Buku::find($id);
-        return view('data_buku.form_edit',compact('dt'));
+        return view('data_buku.form_edit', compact('dt'));
     }
 
     /**
@@ -121,8 +123,8 @@ class BukuController extends Controller
             'tahun_terbit' => $request->tahun_terbit,
         ];
 
-        Buku::where('id',$id)->update($data);
-        return redirect()->route('buku.index')->with('success','Data Berhasil di Simpan');
+        Buku::where('id', $id)->update($data);
+        return redirect()->route('buku.index')->with('success', 'Data Berhasil di Simpan');
     }
 
     /**
@@ -134,22 +136,22 @@ class BukuController extends Controller
     public function destroy($id)
     {
         Buku::find($id)->delete();
-        return back()->with('succes','Data berhasil di hapus');
+        return back()->with('succes', 'Data berhasil di hapus');
     }
 
     public function export_pdf()
     {
-        $data = Buku::orderBy('judul','asc');
+        $data = Buku::orderBy('judul', 'asc');
         $data = $data->get();
 
         // Pass parameters to the export view
-        $pdf = PDF::loadview('data_buku.exportPdf', ['data'=>$data]);
+        $pdf = PDF::loadview('data_buku.exportPdf', ['data' => $data]);
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         // SET FILE NAME
         $filename = date('YmdHis') . '_data_buku';
         // Download the Pdf file
-        return $pdf->download($filename.'.pdf');
+        return $pdf->download($filename . '.pdf');
     }
 
     public function export_excel(Request $request)
@@ -160,11 +162,51 @@ class BukuController extends Controller
 
         // Pass parameters to the export class
         $export = new DataBukuExportView($data);
-        
+
         // SET FILE NAME
         $filename = date('YmdHis') . '_data_buku';
-        
+
         // Download the Excel file
         return Excel::download($export, $filename . '.xlsx');
+    }
+
+    public function import_excel(Request $request)
+    {
+        //DECLARE REQUEST
+        $file = $request->file('file');
+
+        //VALIDATION FORM
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        try {
+            if ($file) {
+                // IMPORT DATA
+                $import = new ImportDataBukuClass;
+                Excel::import($import, $file);
+
+                // SUCCESS
+                $notimportlist = "";
+                if ($import->listgagal) {
+                    $notimportlist .= "<hr> Not Register : <br> {$import->listgagal}";
+                }
+                return back()
+                    ->with('success', 'Import Data berhasil,<br>
+                   Size ' . $file->getSize() . ', File extention ' . $file->extension() . ',
+                   Insert ' . $import->insert . ' data, Update ' . $import->edit . ' data,
+                   Failed ' . $import->gagal . ' data, <br> ' . $notimportlist . '');
+            } else {
+                // ERROR
+                return back()
+                    ->withInput()
+                    ->with('error', 'Gagal memproses!');
+            }
+        } catch (Exception $e) {
+            // ERROR
+            return back()
+                ->withInput()
+                ->with('error', 'Gagal memproses!');
+        }
     }
 }

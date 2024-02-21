@@ -26,8 +26,8 @@
 								<p class="mg-b-20">Harap untuk mengisi semua input</p>
 								@include('_component.pesan') 
 								<div class="pd-30 pd-sm-40 bg-gray-100">
-                                    <form action="" method="post">
-                                        @csrf 
+                                    <form action="{{ route('buku.update',$dt->id) }}" method="post">
+                                        @csrf @method('PUT')
 									<div class="row row-xs align-items-center mg-b-20">
 										<div class="col-md-4">
 											<label class="form-label mg-b-0">Judul Buku</label>
